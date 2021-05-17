@@ -28,6 +28,20 @@ yarn serve
 ```
 <span style="color: red">*</span> In case of error to not be able of connect to database locally (you must have run backend project) just copy the content of **_.env.production_** with **_.env.development_** and repeat from step 3
 
+## How To Deploy project in GitHub Pages?
+
+All the code to can deploy it's configure in the `deploy.sh` file for work with this repository, if you have permission.
+Or you can deploy to your forked/copied repository changing line 23 `git push -f ...` with your repository.
+<span style="color: red">*</span> If you change the original name of repository, you must change line 3 in `vue.config.js` file for the new one.
+
+After this you must have to run:
+```
+./deploy.sh
+```
+or
+```
+yarn run deploy:gh-pages
+```
 
 ## How To Update your fork repository if forked
 
