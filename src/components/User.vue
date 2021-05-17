@@ -91,8 +91,8 @@ import Form from '../components/Form'
                     } else {
                         alert('No se encontro ningún usuario')
                     }
-                }).catch(() => {
-                    //alert('No se ha podido conectar a la base de datos',err)
+                }).catch((err) => {
+                    alert('No se ha podido conectar a la base de datos',err)
                 })
             },
             isNumber(check) {
@@ -130,8 +130,8 @@ import Form from '../components/Form'
                 axios.get(this.baseAPI)
                 .then(res => {
                     this.listUsers = res.data
-                }).catch(() => {
-                    //alert('No se ha podido conectar a la base de datos',err)
+                }).catch((err) => {
+                    alert('No se ha podido conectar a la base de datos',err)
                 })
             },
             showMore(id) {
@@ -139,8 +139,8 @@ import Form from '../components/Form'
                     this.user = res.data
                     this.editing = true,
                     this.loadForm()
-                }).catch(() => {
-                    //alert('No se ha podido conectar a la base de datos',err)
+                }).catch((err) => {
+                    alert('No se ha podido conectar a la base de datos',err)
                 })
             }
         },
