@@ -15,11 +15,17 @@ This application allows:
 Steps (assuming you already have git and yarn):
 
 1. Go to root folder where you want the project it's located and run
-`git clone https://github.com/kliver98/users-crud-front`
+```
+git clone https://github.com/kliver98/users-crud-front
+```
 1. Open folder downloaded in desired code editor and run on the terminal:
-`yarn install`
+```
+yarn install
+```
 1. Lastly to run the project type on the terminal:
-`yarn serve`
+```
+yarn serve
+```
 <span style="color: red">*</span> In case of error to not be able of connect to database locally (you must have run backend project) just copy the content of **_.env.production_** with **_.env.development_** and repeat from step 3
 
 
