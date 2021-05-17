@@ -145,8 +145,8 @@ export default {
                     this.closeForm()
                     this.setField()
                 }
-            }).catch(() => {
-                //alert('No se ha podido conectar a la base de datos ',err)
+            }).catch((err) => {
+                alert('No se ha podido conectar a la base de datos ',err)
             })
         },
         showMessage(html) {
