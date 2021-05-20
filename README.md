@@ -2,12 +2,12 @@
 Simple CRUD UI for users management.
 This application allows:
 
-1. list all user
-1. find a user by it's ID number
-1. create a new user
-1. update an existing one
-1. delete one user
-1. delete all users (strategy of delete one by one, here in front not in back)
+1. List all user
+1. Find a user by it's ID number
+1. Create a new user
+1. Update an existing one
+1. Delete one user
+1. Delete all users (strategy of delete one by one, here in front not in back)
 
 ## How To Download this version and execute?
 
@@ -19,11 +19,11 @@ git clone https://github.com/kliver98/users-crud-front
 ```
 2. Open folder downloaded in desired code editor and run on the terminal:
 ```
-yarn install
+npm install
 ```
 3. Lastly to run the project type on the terminal:
 ```
-yarn serve
+npm start
 ```
 Note: In case of error to not be able of connect to database locally (you must have run backend project) just copy the content of **_.env.production_** with **_.env.development_** and repeat from step 3
 
