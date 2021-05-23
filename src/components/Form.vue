@@ -68,7 +68,8 @@ export default {
                 'ID',
             ],
             type_action: 'Actualizar',
-            baseAPI: process.env.VUE_APP_BASE_URL_API,
+            baseAPIuser: process.env.VUE_APP_BASE_URL_API_USER,
+            baseAPIauth: process.env.VUE_APP_BASE_URL_API_AUTH,
         }
     },
     computed: {
@@ -122,7 +123,7 @@ export default {
                     alert('No se puede cambiar la cedula, debe contactarse con el administrador')
                     return
                 }
-                axios.post(this.baseAPI, user).then(res => {
+                axios.post(this.baseAPIuser, user).then(res => {
                     if (res.status===200) {
                         this.closeForm()
                         this.setField()
@@ -140,7 +141,7 @@ export default {
             }
         },
         updateUser(user) {
-            axios.put(this.baseAPI+user._id, user).then(res => {
+            axios.put(this.baseAPIuser+user._id, user).then(res => {
                 if (res.status===200) {
                     this.closeForm()
                     this.setField()
