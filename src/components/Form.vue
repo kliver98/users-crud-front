@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1"><span class="text-danger">*</span> Número del documento</label>
-            <input type="number" :disabled=isDisabled class="form-control" id="_id" placeholder="123456789" autocomplete="off">
+            <input type="number" :disabled=isEditing class="form-control" id="_id" placeholder="123456789" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1"><span class="text-danger">*</span> Nombre de Usuario</label>
@@ -42,7 +42,8 @@
             <label class="form-check-label" for="active">¿Cuenta activa?</label>
         </div>
         <div class="d-flex bd-highlight mb-3">
-            <button type="button" class="btn btn-secondary p-2 bd-highlight pl-4 pr-4" @click="createUser"><span id="action">Crear</span></button>
+            <button v-show="isEditing" type="button" class="btn btn-secondary p-2 bd-highlight pl-4 pr-4" @click="updateUser"><span id="action">Actualizar</span></button>
+            <button v-show="!isEditing" type="button" class="btn btn-secondary p-2 bd-highlight pl-4 pr-4" @click="createUser"><span id="action">Crear</span></button>
             <button type="button" class="btn btn-danger ml-auto p-2 bd-highlight pl-3 pr-3" @click="closeForm">Cancelar</button>
         </div>
     </form>
@@ -67,13 +68,12 @@ export default {
                 'DUI - DocumentoUnicoIdentidad',
                 'ID',
             ],
-            type_action: 'Actualizar',
             baseAPIuser: process.env.VUE_APP_BASE_URL_API_USER,
             baseAPIauth: process.env.VUE_APP_BASE_URL_API_AUTH,
         }
     },
     computed: {
-        isDisabled() {
+        isEditing() {
             return this.$parent.editing;
         }
     },
@@ -82,9 +82,6 @@ export default {
         user() {
             let user = this.$parent.user
             this.setField(user.id_type, user._id, user.lastname, user.firstname, user.username, user.password, user.photo, user.active)
-        },
-        editing() {
-            document.getElementById("action").innerHTML = this.$parent.editing ? 'Actualizar':'Crear';
         }
     },
     methods: {
@@ -94,7 +91,7 @@ export default {
             this.$parent.loadForm();
             this.$parent.editing = false;
         },
-        createUser() {
+        createFormUser() {
             let docSelect = document.getElementById("id_type");
             var id_type = docSelect.options[docSelect.selectedIndex].value;
             let _id = document.getElementById("_id").value;
@@ -105,7 +102,7 @@ export default {
             let photo = document.getElementById("photo").value;
             let active = document.getElementById("active").checked;
 
-            let user = {
+            return {
                 _id: _id,
                 id_type: id_type,
                 lastname: lastname,
@@ -115,16 +112,15 @@ export default {
                 photo: photo,
                 active: active,
             }
+        },
+        createUser() {
+            let user = this.createFormUser()
 
             if (!this.fieldsCorrect(user)) {
                 this.showMessage('<div class="p-3 mb-2 bg-danger text-white text-center rounded">Revisa los campos de nuevo, los que tienen <b>*</b> son obligatorios</div>')
             } else {
                 if (this.$parent.editing && this.$parent.user._id!==parseInt(user._id)) {
                     alert('No se puede cambiar la cedula, debe contactarse con el administrador')
-                    return
-                }
-                if (this.$parent.editing) {
-                    this.updateUser(user)
                     return
                 }
                 axios.post(this.baseAPIuser, user).then(res => {
@@ -138,14 +134,18 @@ export default {
                 });
             }
         },
-        updateUser(user) {
+        updateUser() {
+            let user = this.createFormUser()
             axios.put(this.baseAPIuser+user._id, user).then(res => {
                 if (res.status===200) {
                     this.closeForm()
                     this.setField()
                 }
+                alert(res)
             }).catch((err) => {
-                alert('No se ha podido conectar a la base de datos ',err)
+                if( err.response ){
+                    alert(err.response.data); // => the response payload 
+                }
             })
         },
         showMessage(html) {
