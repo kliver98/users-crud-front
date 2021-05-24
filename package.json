@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
+    "test:contract": "jest -c test/contract/jest.contract.config.js --detectOpenHandles",
+    "publish:contract": "node ./test/contract/config/publish.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy:gh-pages": "./deploy.sh"
