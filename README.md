@@ -39,7 +39,7 @@ After this you must have to run:
 ```
 or
 ```
-yarn run deploy:gh-pages
+npm run deploy:gh-pages
 ```
 
 ## How To Update your fork repository if forked
