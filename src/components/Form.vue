@@ -119,8 +119,12 @@ export default {
             if (!this.fieldsCorrect(user)) {
                 this.showMessage('<div class="p-3 mb-2 bg-danger text-white text-center rounded">Revisa los campos de nuevo, los que tienen <b>*</b> son obligatorios</div>')
             } else {
-                if (this.$parent.editing && this.$parent.user._id!==user._id) {
+                if (this.$parent.editing && this.$parent.user._id!==parseInt(user._id)) {
                     alert('No se puede cambiar la cedula, debe contactarse con el administrador')
+                    return
+                }
+                if (this.$parent.editing) {
+                    this.updateUser(user)
                     return
                 }
                 axios.post(this.baseAPIuser, user).then(res => {
@@ -128,14 +132,8 @@ export default {
                         this.closeForm()
                         this.setField()
                     }
-                }).catch(() => {
-                        let result = true;
-                        if (!this.$parent.editing) {
-                            result = window.confirm("Ya existe el usuario ¿Desea actualizarlo?");
-                        }
-                        if (result) {
-                            this.updateUser(user)
-                        }
+                }).catch((err) => {
+                        console.log(err)
                         //this.showMessage('<div class="p-3 mb-2 bg-danger text-white text-center rounded">Error: ya existe usuario el número de documento<br />'+err+'</div>')
                 });
             }
