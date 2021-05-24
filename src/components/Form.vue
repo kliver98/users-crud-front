@@ -141,7 +141,6 @@ export default {
                     this.closeForm()
                     this.setField()
                 }
-                alert(res)
             }).catch((err) => {
                 if( err.response ){
                     alert(err.response.data); // => the response payload 
