@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { UserController as users } from '../modules/UserController'
 import Form from '../components/Form'
 
     export default {
@@ -86,7 +86,7 @@ import Form from '../components/Form'
                     this.docId = ''
                     return
                 }
-                axios.get(this.baseAPIuser+this.docId).then(res => {
+                users.getUser(this.docId).then(res => {
                     if (res.data!=="") {
                         this.showMore(res.data._id)
                     } else {
@@ -107,15 +107,13 @@ import Form from '../components/Form'
             },
             createUser() {
                 this.user = {};
-                this.loadForm();
+                this.switchForm();
             },
-            loadForm() {
+            switchForm() {
                 this.showForm = !this.showForm;
             },
             deleteUser(id, index) {
-                axios.delete(this.baseAPIuser+id)
-                .then(res => {
-                    res,
+                users.delete(id).then(() => {
                     this.listUsers.splice(index,1)
                 })
             },
@@ -128,18 +126,17 @@ import Form from '../components/Form'
                 }
             },
             getUsers() {
-                axios.get(this.baseAPIuser)
-                .then(res => {
+                users.list().then(res => {
                     this.listUsers = res.data
                 }).catch((err) => {
                     alert('No se ha podido conectar a la base de datos',err)
                 })
             },
             showMore(id) {
-                axios.get(this.baseAPIuser+id).then(res => {
+                users.getUser(id).then(res => {
                     this.user = res.data
                     this.editing = true,
-                    this.loadForm()
+                    this.switchForm()
                 }).catch((err) => {
                     alert('No se ha podido conectar a la base de datos',err)
                 })
