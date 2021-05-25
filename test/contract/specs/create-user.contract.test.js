@@ -2,32 +2,41 @@ import { provider } from '../config/init-pact-user';
 import { UserController as controller } from '../../../src/modules/UserController';
 import { Matchers } from '@pact-foundation/pact';
 
+const user = {
+    lastname:"admin2",
+    firstname:"admin2",
+    username:"admin2",
+    id_type:"CC",
+    _id:100002,
+    password:"admin2",
+    photo:"",
+    active:true,
+}
+
 describe('Given an user service', () => {
     beforeAll(async() => {
         await provider.setup();
     });
 
-    describe('When a request to list all the users is made', () => {
+    describe('When a request to create an user is made', () => {
         beforeAll(async() => {
             await provider.addInteraction({
-                state: 'has users and wants to list them',
-                uponReceiving: 'a request to list all users',
+                state: 'create an user',
+                uponReceiving: 'a request to create an user',
                 withRequest: {
-                    method: 'GET',
-                    path: '/api/latest/users'
+                    method: 'POST',
+                    path: '/api/latest/users',
+                    body: user
                 },
                 willRespondWith: {
-                    status: 200,
-                    body: Matchers.eachLike({
-                        username: Matchers.string('admin'),
-                        _id: Matchers.like(0),
-                    }, {min: 1})
+                    status: 201,
+                    body: Matchers.string(`Information: user with id [${user._id}] created successfully`)
                 }
             });
         });
 
         test('Then it should return the right data', async() => {
-            const response = await controller.list();
+            const response = await controller.create(user);
             expect(response.data).toMatchSnapshot();
 
             await provider.verify();

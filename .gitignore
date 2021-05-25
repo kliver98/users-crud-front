@@ -26,3 +26,8 @@ pnpm-debug.log*
 
 # Avoid yarn.lock to upload because may have confict to deploy on heroku
 yarn.lock
+
+#Contract
+
+test/contract/logs
+test/contract/pacts

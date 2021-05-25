@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given an user service When a request to create an user is made Then it should return the right data 1`] = `"Information: user with id [100002] created successfully"`;
