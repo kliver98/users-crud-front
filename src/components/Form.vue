@@ -27,7 +27,8 @@
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1"><span class="text-danger">*</span> Número del documento</label>
-            <input type="number" :disabled=isEditing class="form-control" id="_id" placeholder="123456789" autocomplete="off">
+            <input type="number" onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189"
+            :disabled=isEditing class="form-control" id="_id" placeholder="123456789" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1"><span class="text-danger">*</span> Nombre de Usuario</label>
@@ -91,6 +92,20 @@ export default {
             this.$parent.loadForm();
             this.$parent.editing = false;
         },
+        validateUrl(){
+            let url = document.getElementById("photo").value;
+            if(url!=''){
+            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+            return !!pattern.test(url);
+            }
+            return true;
+        },
+        
         createFormUser() {
             let docSelect = document.getElementById("id_type");
             var id_type = docSelect.options[docSelect.selectedIndex].value;
@@ -118,6 +133,8 @@ export default {
 
             if (!this.fieldsCorrect(user)) {
                 this.showMessage('<div class="p-3 mb-2 bg-danger text-white text-center rounded">Revisa los campos de nuevo, los que tienen <b>*</b> son obligatorios</div>')
+            }else if(!this.validateUrl()){
+                this.showMessage('<div class="p-3 mb-2 bg-danger text-white text-center rounded">Revisa la url ingresada <b>*</b> Debe ser valida</div>')
             } else {
                 if (this.$parent.editing && this.$parent.user._id!==parseInt(user._id)) {
                     alert('No se puede cambiar la cedula, debe contactarse con el administrador')
