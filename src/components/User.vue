@@ -68,7 +68,8 @@ import Form from '../components/Form'
         },
         data() {
             return {
-                baseAPI: process.env.VUE_APP_BASE_URL_API,
+                baseAPIuser: process.env.VUE_APP_BASE_URL_API_USER,
+                baseAPIauth: process.env.VUE_APP_BASE_URL_API_AUTH,
                 docId: '',
                 showForm: false,
                 listUsers: [],
@@ -85,7 +86,7 @@ import Form from '../components/Form'
                     this.docId = ''
                     return
                 }
-                axios.get(this.baseAPI+this.docId).then(res => {
+                axios.get(this.baseAPIuser+this.docId).then(res => {
                     if (res.data!=="") {
                         this.showMore(res.data._id)
                     } else {
@@ -112,7 +113,7 @@ import Form from '../components/Form'
                 this.showForm = !this.showForm;
             },
             deleteUser(id, index) {
-                axios.delete(this.baseAPI+id)
+                axios.delete(this.baseAPIuser+id)
                 .then(res => {
                     res,
                     this.listUsers.splice(index,1)
@@ -127,7 +128,7 @@ import Form from '../components/Form'
                 }
             },
             getUsers() {
-                axios.get(this.baseAPI)
+                axios.get(this.baseAPIuser)
                 .then(res => {
                     this.listUsers = res.data
                 }).catch((err) => {
@@ -135,7 +136,7 @@ import Form from '../components/Form'
                 })
             },
             showMore(id) {
-                axios.get(this.baseAPI+id).then(res => {
+                axios.get(this.baseAPIuser+id).then(res => {
                     this.user = res.data
                     this.editing = true,
                     this.loadForm()
