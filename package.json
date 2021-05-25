@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
+    "test:contract": "jest -c test/contract/jest.contract.config.js --detectOpenHandles",
+    "publish:contract": "node ./test/contract/config/publish.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy:gh-pages": "./deploy.sh"
@@ -11,12 +13,15 @@
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "dotenv": "^8.6.0",
     "loadash": "^1.0.0",
     "vue": "^3.0.0",
     "vue-confirm-dialog": "^1.0.2",
     "vue-router": "^3.4.9"
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^9.15.5",
+    "@testing-library/jest-dom": "^5.12.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
@@ -24,6 +29,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "jest": "^26.6.3",
+    "pact": "^4.3.2",
     "vue-cli-plugin-vuetify": "~2.0.7",
     "vue-loader-v16": "*"
   },
