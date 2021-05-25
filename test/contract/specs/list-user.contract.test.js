@@ -1,4 +1,4 @@
-import { provider } from '../config/init-pact';
+import { provider } from '../config/init-pact-user';
 import { UserController as controller } from '../../../src/modules/UserController';
 import { Matchers } from '@pact-foundation/pact';
 
