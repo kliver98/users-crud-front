@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { UserController as users } from '../modules/UserController'
 
 export default {
     data() {
@@ -89,7 +89,7 @@ export default {
         closeForm() {
             this.setField()
             this.$parent.getUsers();
-            this.$parent.loadForm();
+            this.$parent.switchForm();
             this.$parent.editing = false;
         },
         validateUrl(){
@@ -105,7 +105,7 @@ export default {
             }
             return true;
         },
-    
+        
         createFormUser() {
             let docSelect = document.getElementById("id_type");
             var id_type = docSelect.options[docSelect.selectedIndex].value;
@@ -140,8 +140,8 @@ export default {
                     alert('No se puede cambiar la cedula, debe contactarse con el administrador')
                     return
                 }
-                axios.post(this.baseAPIuser, user).then(res => {
-                    if (res.status===200) {
+                users.create(user).then(res => {
+                    if (res.status===201) {
                         this.closeForm()
                         this.setField()
                     }
@@ -153,7 +153,7 @@ export default {
         },
         updateUser() {
             let user = this.createFormUser()
-            axios.put(this.baseAPIuser+user._id, user).then(res => {
+            users.updateUser(user._id, user).then(res => {
                 if (res.status===200) {
                     this.closeForm()
                     this.setField()
