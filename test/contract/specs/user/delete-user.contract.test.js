@@ -1,5 +1,5 @@
-import { provider } from '../config/init-pact-user';
-import { UserController as controller } from '../../../src/modules/UserController';
+import { provider } from '../../config/init-pact-user';
+import { UserController as controller } from '../../../../src/modules/UserController';
 import { Matchers } from '@pact-foundation/pact';
 
 const user_id = 100001;
@@ -19,8 +19,7 @@ describe('Given an user service', () => {
                     path: `/api/latest/users/${user_id}`
                 },
                 willRespondWith: {
-                    status: 200,
-                    body: Matchers.like(`Information: User [${user_id}] deleted successfully`)
+                    status: 200
                 }
             });
         });
