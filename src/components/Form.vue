@@ -147,7 +147,7 @@ export default {
                     }
                 }).catch((err) => {
                         console.log(err)
-                        //this.showMessage('<div class="p-3 mb-2 bg-danger text-white text-center rounded">Error: ya existe usuario el número de documento<br />'+err+'</div>')
+                        //this.showMessage(' <div class="p-3 mb-2 bg-danger text-white text-center rounded">Error: ya existe usuario el número de documento<br />'+err+'</div>')
                 });
             }
         },
