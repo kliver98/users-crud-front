@@ -1,5 +1,5 @@
-import { provider } from '../config/init-pact-user';
-import { UserController as controller } from '../../../src/modules/UserController';
+import { provider } from '../../config/init-pact-user';
+import { UserController as controller } from '../../../../src/modules/UserController';
 import { Matchers } from '@pact-foundation/pact';
 
 const user = {
@@ -29,8 +29,7 @@ describe('Given an user service', () => {
                     body: user
                 },
                 willRespondWith: {
-                    status: 201,
-                    body: Matchers.string(`Information: user with id [${user._id}] created successfully`)
+                    status: 201
                 }
             });
         });

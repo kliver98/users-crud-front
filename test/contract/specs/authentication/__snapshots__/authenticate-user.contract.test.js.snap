@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given an authentication service When a request to authenticate an user is made Then it should return the right data 1`] = `
+Array [
+  Object {
+    "username": "admin",
+  },
+]
+`;

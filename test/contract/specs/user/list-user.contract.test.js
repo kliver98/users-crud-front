@@ -1,5 +1,5 @@
-import { provider } from '../config/init-pact-user';
-import { UserController as controller } from '../../../src/modules/UserController';
+import { provider } from '../../config/init-pact-user';
+import { UserController as controller } from '../../../../src/modules/UserController';
 import { Matchers } from '@pact-foundation/pact';
 
 describe('Given an user service', () => {
