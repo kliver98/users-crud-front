@@ -35,7 +35,7 @@
                             </li>
                             <br>
                             <li v-for="(user ,index) of listUsers" :key="index" 
-                            class="list-group-item d-flex justify-content-between" data_testid = user._id >
+                            class="list-group-item d-flex justify-content-between" data_testid = {{user._id}} >
                                 <!--span class="cursor">
                                     <i class="far fa-circle"></i>
                                 </span-->
