@@ -93,13 +93,13 @@ export default {
       auth
         .authenticate(userInfo)
         .then((res) => {
-          console.log(res.data.username);
+          console.log(res.data);
           this.loginShow();
           document.getElementById("btnLogin").innerHTML =
             "Bienvenido " + res.data.username;
         })
         .catch((err) => {
-          alert("Error", err);
+          alert("Ha ocurrido un error, verifica la información.", err)
         });
     },
     cancelLogin() {

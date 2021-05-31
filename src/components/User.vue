@@ -123,6 +123,7 @@ import Form from '../components/Form'
                     this.listUsers.forEach(el => {
                         this.deleteUser(el._id,0)
                     })
+                    alert("Se han eliminado todos los usuarios")
                 }
             },
             getUsers() {
