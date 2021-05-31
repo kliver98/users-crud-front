@@ -142,11 +142,12 @@ export default {
                 }
                 users.create(user).then(res => {
                     if (res.status===201) {
+                        alert("Usuario creado exitosamente")
                         this.closeForm()
                         this.setField()
                     }
                 }).catch((err) => {
-                        console.log(err)
+                        alert("A ocurrido un error, verifica la información.",err)
                         //this.showMessage(' <div class="p-3 mb-2 bg-danger text-white text-center rounded">Error: ya existe usuario el número de documento<br />'+err+'</div>')
                 });
             }
@@ -155,6 +156,7 @@ export default {
             let user = this.createFormUser()
             users.updateUser(user._id, user).then(res => {
                 if (res.status===200) {
+                    alert("Usuario actualizado exitosamente")
                     this.closeForm()
                     this.setField()
                 }
