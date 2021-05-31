@@ -7,7 +7,7 @@ export const AuthenticationController = {
         return axios({
             method: 'POST',
             baseURL: baseAPIauth,
-            url: 'users/auth',
+            url: 'users/auth/',
             data: credentials,
         })
     }
