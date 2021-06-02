@@ -25,4 +25,6 @@ jobs:
         MONGODB_URL: ${{ secrets.MONGODB_URL }}
         PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_BASE_URL }}
         PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+        VUE_APP_BASE_URL_API_USER: ${{ secrets.VUE_APP_BASE_URL_API_USER }}
+        VUE_APP_BASE_URL_API_AUTH: ${{ secrets.VUE_APP_BASE_URL_API_AUTH }}
       run: npm run test:contract
