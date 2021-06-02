@@ -18,7 +18,8 @@
     "loadash": "^1.0.0",
     "vue": "^3.0.0",
     "vue-confirm-dialog": "^1.0.2",
-    "vue-router": "^3.4.9"
+    "vue-router": "^3.4.9",
+    "vue-template-compiler": "^2.6.13"
   },
   "devDependencies": {
     "@pact-foundation/pact": "^9.15.5",
