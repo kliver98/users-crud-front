@@ -32,7 +32,6 @@ describe('Given an authentication service', () => {
         });
 
         test('Then it should return the right data', async() => {
-            console.log('<<<>>>>')
             const response = await controller.authenticate(credentials);
             expect(response.data).toMatchSnapshot();
 
