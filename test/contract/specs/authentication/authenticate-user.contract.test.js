@@ -19,7 +19,7 @@ describe('Given an authentication service', () => {
                 uponReceiving: 'a request to authenticate an user',
                 withRequest: {
                     method: 'POST',
-                    path: '/api/latest/users/auth',
+                    path: '/api/latest/users/auth/',
                     body: credentials
                 },
                 willRespondWith: {
